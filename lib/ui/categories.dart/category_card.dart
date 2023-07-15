@@ -52,6 +52,7 @@ class CategoryCard extends StatelessWidget {
                         'http://vzzoz.pythonanywhere.com${card['Image']}',
                         fit: BoxFit.fill,
                         height: 10000,
+                        width: 10000,
                       ),
                     ),
                     ClipRRect(

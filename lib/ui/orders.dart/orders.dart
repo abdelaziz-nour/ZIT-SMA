@@ -58,6 +58,8 @@ class OrdersPage extends StatelessWidget {
               },
             ),
             Obx(() {
+              _controller.filteredOrders
+                  .removeWhere((order) => order.containsKey('Total'));
               if (_controller.status == Status.initial ||
                   _controller.status == Status.loading) {
                 return const CircularProgressIndicator();
@@ -67,7 +69,8 @@ class OrdersPage extends StatelessWidget {
                   primary: false,
                   itemCount: _controller.filteredOrders.length,
                   itemBuilder: (context, index) {
-                    var order = _controller.filteredOrders[index];
+                    Map<String, dynamic> order =
+                        _controller.filteredOrders[index];
                     return Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
@@ -87,7 +90,7 @@ class OrdersPage extends StatelessWidget {
                           children: [
                             Text(
                               order['id'].toString(),
-                              style:const TextStyle(fontSize: 18),
+                              style: const TextStyle(fontSize: 18),
                             ),
                             Text(
                               order['Status'].toString(),
@@ -111,7 +114,7 @@ class OrdersPage extends StatelessWidget {
                         ),
                         trailing: Text(
                           order['CreatedOn'].substring(0, 16),
-                          style:const TextStyle(fontSize: 15),
+                          style: const TextStyle(fontSize: 15),
                         ),
                       ),
                     );
