@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zit_sma/main_controller.dart';
+import 'package:zit_sma/ui/dashboard.dart/dashboard_controller.dart';
 import 'package:zit_sma/ui/orders.dart/orsers_controller.dart';
 import 'package:zit_sma/widgets/search_bar.dart';
 
 class OrdersPage extends StatelessWidget {
   MainController controller = Get.find();
   OrdersController _controller = Get.find();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,11 +33,21 @@ class OrdersPage extends StatelessWidget {
                           style:
                               TextStyle(color: controller.black, fontSize: 30),
                         ),
+                        IconButton(
+                            onPressed: () async {
+                              await _controller.getMyOrders();
+                            },
+                            icon: Icon(Icons.refresh_outlined)),
                       ],
                     )
                   : Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
+                        IconButton(
+                            onPressed: () async {
+                              await _controller.getMyOrders();
+                            },
+                            icon: Icon(Icons.refresh_outlined)),
                         Text(
                           'لبات',
                           style:
